@@ -25,9 +25,25 @@ namespace Adresář_kontaktů
                 switch(klavesa.Key)
                 {
                     case ConsoleKey.P:
-                        Zaznam NovyZaznam = new Zaznam();
+                        Zaznam novyZaznam = new Zaznam();
+                        UpravZaznam(novyZaznam);
+                        Console.WriteLine("Číslo záznamu: ");
                         break;
                     case ConsoleKey.V:
+                        Console.Clear();
+                        if (seznamZaznamu.Count > 0)
+                        {
+                            int pocitadlo = 0;
+                            foreach (Zaznam z in seznamZaznamu)
+                            {
+                                Console.WriteLine("Číslo záznamu: " + pocitadlo++);
+                                VypisZaznam(z);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Seznam je prázdný!");
+                        }
                         break;
                     case ConsoleKey.U:
                         break;
@@ -48,6 +64,10 @@ namespace Adresář_kontaktů
             zaznam.Jmeno = Console.ReadLine();
             Console.WriteLine();
             zaznam.Adresa = Console.ReadLine();
+        }
+        static void VypisZaznam(Zaznam z)
+        {
+            Console.WriteLine("Jméno: " + z.Jmeno + "\nAdresa: " + z.Adresa);
         }
     }
 }
